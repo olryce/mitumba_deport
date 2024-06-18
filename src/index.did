@@ -1,0 +1,33 @@
+type Mitumba = record {
+  id : text;
+  owner : principal;
+  quality : text;
+  name : text;
+  createdAt : nat64;
+  designer : text;
+  updatedAt : opt nat64;
+  gender : text;
+  companyName : text;
+  image : text;
+  price : text;
+};
+type MitumbaPayload = record {
+  quality : text;
+  name : text;
+  description : text;
+  designer : text;
+  gender : text;
+  companyName : text;
+  image : text;
+  price : text;
+};
+type _AzleResult = variant { Ok : Mitumba; Err : text };
+type _AzleResult_1 = variant { Ok : vec Mitumba; Err : text };
+service : () -> {
+  CreateMitumba : (MitumbaPayload) -> (_AzleResult);
+  deleteMitumba : (text) -> (_AzleResult);
+  getAllMitumba : () -> (_AzleResult_1) query;
+  getMitumbaById : (text) -> (_AzleResult) query;
+  getMitumbaByName : (text) -> (_AzleResult) query;
+  updateMitumba : (text, MitumbaPayload) -> (_AzleResult);
+}
